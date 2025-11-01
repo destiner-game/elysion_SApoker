@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysion特殊能力ポーカー ルールブック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f5f5f4; /* stone-100 */
+        }
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-link.active {
+            background-color: #991b1b; /* red-800 */
+            color: white;
+            transform: scale(1.05);
+        }
+        .icon-img {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        .keyword {
+            text-decoration: underline;
+            text-decoration-color: #991b1b; /* red-800 */
+            text-decoration-thickness: 2px;
+        }
+        /* For Accordion styling */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details > summary::after {
+            content: '+';
+            float: right;
+            font-size: 1.5em;
+            font-weight: bold;
+            line-height: 1;
+            margin-right: 1rem;
+            transition: transform 0.2s ease-in-out;
+        }
+        details[open] > summary::after {
+            transform: rotate(45deg);
+        }
+        .sort-header {
+            cursor: pointer;
+            position: relative;
+        }
+        .sort-header::after {
+            content: ' ';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            margin-top: -7px;
+            border-style: solid;
+            border-width: 5px;
+            border-color: transparent;
+        }
+        .sort-header:not(.sort-asc):not(.sort-desc)::after {
+            border-top-color: #999;
+            border-bottom-color: #999;
+            opacity: 0.2;
+        }
+        .sort-header.sort-asc::after {
+            border-bottom-color: white;
+        }
+        .sort-header.sort-desc::after {
+            border-top-color: white;
+        }
+    </style>
+</head>
+<body class="text-stone-800">
+
+    <header class="bg-stone-900 text-white p-4 shadow-lg">
+        <div class="container mx-auto text-center">
+            <h1 class="orbitron text-4xl md:text-5xl font-bold"><span class="text-red-500">特</span>殊<span class="text-red-500">能</span>力ポーカー 説明書</h1>
+        </div>
+    </header>
+
+    <nav class="sticky top-0 bg-stone-800 z-10 shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center -mb-px">
+                <a href="#intro_overview" class="nav-link active text-white text-center py-3 px-4 md:px-6 rounded-t-lg" data-target="intro_overview">はじめに＆概要</a>
+                <a href="#how-to-use" class="nav-link text-white text-center py-3 px-4 md:px-6 rounded-t-lg" data-target="how-to-use">アイテムの使い方</a>
+                <a href="#hand-ranking" class="nav-link text-white text-center py-3 px-4 md:px-6 rounded-t-lg" data-target="hand-ranking">役判定について</a>
+                <a href="#glossary" class="nav-link text-white text-center py-3 px-4 md:px-6 rounded-t-lg" data-target="glossary">用語・役表</a>
+                <a href="#rulings" class="nav-link text-white text-center py-3 px-4 md:px-6 rounded-t-lg" data-target="rulings">Q&A / 裁定</a>
+                <a href="#card-list" class="nav-link text-white text-center py-3 px-4 md:px-6 rounded-t-lg" data-target="card-list">カード一覧</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="intro_overview" class="content-section active">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="orbitron text-2xl font-bold border-b-2 border-red-800 pb-2 mb-4">0. はじめに</h2>
+                <p class="mb-4">この度は、Elysion特殊能力ポーカー（特能ポーカー）をお手に取っていただきありがとうございます。</p>
+                <p class="mb-4">本製品は、テキサスホールデム（NLH）を遊ぶ際に追加で使用できるアイテムです。<br>基本的なルールはNLHに準拠しながら、特別な能力を持つカードを使用することで、いつものゲームとは全く違う駆け引き、<span class="font-bold">大怪獣バトル</span>を楽しんでいただけます。</p>
+                <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md" role="alert">
+                    <p class="font-bold">【重要】</p>
+                    <p>この説明書は、標準的なテキサスホールデムの基本ルールや用語（ゲームの進行、ベットラウンド、ポーカーの役など）を理解していることを前提としています。<br>ここでは、主にアイテムの使用方法と、それに伴う追加ルールについて説明します。</p>
+                </div>
+            
+                <h2 class="orbitron text-2xl font-bold border-b-2 border-red-800 pb-2 mb-4 mt-12">1. ゲームの概要</h2>
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">1.1. 内容物</h3>
+                <ul class="list-disc list-inside bg-stone-50 p-4 rounded">
+                    <li>特殊能力カード（以下：アイテム）：70枚</li>
+                    <li>カウンター：20個</li>
+                    <li>6面ダイス：2個</li>
+                    <li>説明書カード</li>
+                </ul>
+                 <div class="mt-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md" role="alert">
+                    <p class="font-bold">【重要】</p>
+                    <p>トランプ、チップは付属していません。各自でご用意をお願いします。<br>本ゲームでは、チップを追加で獲得することが多々ありますので、余剰チップをストックとして用意することを推奨します。</p>
+                </div>
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">1.2. アイテムの入手と手札上限</h3>
+                <p class="font-semibold">▼ アイテムの入手</p>
+                <p class="mb-2">プレイヤーは以下のタイミングで、アイテムの山札からカードを1枚受け取ります。</p>
+                <ul class="list-disc list-inside ml-4 mb-4 bg-stone-50 p-4 rounded">
+                    <li>エントリー & リエントリー時</li>
+                    <li>アイテム配布フェーズ（下記を満たした直後のゲーム間で配布すること）
+                        <ul class="list-disc list-inside ml-4 mt-1">
+                            <li><strong>トーナメントの場合:</strong> 各レベル開始時</li>
+                            <li><strong>リングゲームの場合:</strong> 20分ごと</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="font-semibold">▼ アイテムの手札上限</p>
+                <p>各プレイヤーが手札に所持できるアイテム枚数は、通常2枚までです。<br>アイテム配布フェーズ終了後、アイテムの手札が上限を超えている場合、超過している枚数分のアイテムを選んで即座に捨て札にしてください。</p>
+                <div class="mt-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-3 rounded" role="alert">
+                    <p><strong>注意:</strong> アイテム配布フェーズ中にアイテムを使用することはできません。</p>
+                </div>
+                
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">1.3. プレイヤーの敗退</h3>
+                <p>プレイヤーのスタック（チップ）が0になり、ショーダウンが終了したタイミングで敗退となります。<br>敗退した場合、そのプレイヤーの手札と、そのプレイヤーに「設置」されていたアイテムの全てを捨て札にします。</p>
+                </div>
+        </section>
+
+        <section id="how-to-use" class="content-section">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="orbitron text-2xl font-bold border-b-2 border-red-800 pb-2 mb-4">2. アイテム（特殊能力カード）の使い方</h2>
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">2.1. カードの見方</h3>
+                 <div class="grid md:grid-cols-2 gap-8 items-center bg-stone-50 p-4 rounded-lg">
+                    <div class="relative justify-self-center">
+                        <img src="https://i.imgur.com/gO0n3a4.png" alt="サンプルカード" class="w-full h-auto rounded-lg shadow-md max-w-xs mx-auto">
+                    </div>
+                    <div>
+                        <ul class="space-y-3">
+                              <li><span class="font-bold text-red-700">①カード名（中央上）:</span> カードの名称です</li>
+                              <li><span class="font-bold text-red-700">②カード種類（左上）:</span> アイコンでカードのタイプを示します</li>
+                            <li><span class="font-bold text-red-700">③カードレベル（右上）:</span> 1～3の数字で示され、カードの強さや影響力の目安となります</li>
+                              <li><span class="font-bold text-red-700">④効果（中央）:</span> カード使用時に発動する効果です</li>
+                              <li><span class="font-bold text-red-700">⑤使用タイミング・⑥フェーズ（下部）:</span> いつ、どの場面で使えるかを示します</li>
+                            <li><span class="font-bold text-red-700">拡張マーク（右上）:</span> アイテムが含まれるセットを示します<br>（例：基本：無印、拡張①：チップ、拡張②：ドクロマーク）</li>
+                        </ul>
+                    </div>
+                </div>
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">2.2. アイテムの使用宣言</h3>
+                <p>アイテムを使用する際は、そのアイテム名を声に出して宣言し、その後効果を読み上げます<br>使用が宣言された場合、他のプレイヤーはアクションの一切を中断して宣言されたアイテムの効果を解決し、効果の解決後にゲームを再開します。</p>
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">2.3. カードの種類</h3>
+                <p>アイテムにはいくつかの種類があり、カード左上のアイコンで識別できます。</p>
+                <div class="space-y-4 mt-4">
+                    <div class="flex items-start">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhbLl23_KU2vMGbtL0h3rGxnX4JNBOSi1Uaw1PlX1kic9129DzhLXrDO-s8mHQBSteVwi2sBwun2K_CYjCc4X9QgYlBAU1J59mNF0wZR9kpYQRysIpJ_-Jqn_cIsd6MSmEhgsKxpqY81MxQjqfQmpaFhj8XkS35NLhK02BKu_0X-f399f-UB8XGSBHk7sI/s1600/%E5%8D%B3%E6%99%82.png" alt="即時アイコン" class="icon-img">
+                        <p><strong class="font-bold">即時カード:</strong> 場に出して公開することで効果が発動します。発動後、このカードは破棄されます。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPvYDIqmAQrlDAS_tFW71it20Nc4aStDBP9vQgB2vPWk2hGo_C4QPYbc20ceKb2L7RY1ZP30vUAIpQ2rof0SlkbvWXfeeOeWKVQgjVXUnN1dbNTp7lWmJMyW25AJo5Ub8YTPYJjixnT81UJ-jV9Eh7SJ2aGhu5sQA7s7_6unHXYuEysbrlqcFHwUw-KfM/s1600/%E5%AF%BE%E5%BF%9C.png" alt="対応アイコン" class="icon-img">
+                        <p><strong class="font-bold">対応カード:</strong> 特定の効果が発動したことに対して、割り込んで発動できます。発動後、このカードは破棄されます。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0qpEyNEKH00oqfn9IqWiy8NbG6uBU997LbxLraYatrvcDJIV3s7s7O9qI5gj196N83tmZUReqidciAvWPl6Zx08n_0fLdm6LlXtNfnmVHbRmRDfUTTTIG1cFwcOxcTCznwr1Z5pKZSIHX4NP8deF3NpDCoWI1Yip5lfPHFN5Jz6o6HcCmRPlktEEQlEg/s1600/%E8%A8%AD%E7%BD%AE%EF%BC%881%E3%83%9C%E3%82%BF%E3%83%B3%EF%BC%89.png" alt="設置アイコン1" class="icon-img">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8slFtVdsCQQNj9mjj9KUTVbHtXqsAnODOgbg02jWL6XL2iZ8WEJNcYhQ_mbb3KsMERJfq5-6JoCtT3WfBrykUk18H4DwNBP_6cOZ-SX4al_OJY5jYN5SMkk_UI4Kw_pc-5muUJOs4u5V5TK8rvuEGu-cStxggGsT0GPdYEpzbtLUkbF0nY8JoN95gC3w/s1600/%E8%A8%AD%E7%BD%AE%EF%BC%882%E3%83%9C%E3%82%BF%E3%83%B3%EF%BC%89.png" alt="設置アイコン2" class="icon-img">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFN138L8FmNzpp0Fj-89ri_9FtKswbS0ZRgx32sSdyVp_v2-fx2Q4OhTMWQ5j6_E509nIw03xsTiZLKIKYqalcdsbCn5_ce1UbB3jGb1YgR0Gf4KEMWUDfrQH1IR2atb4t55KX5zl9oeMx_xiq4utMIjxgcqEUa8Eru4HDvlYuiizkaL4z_QpnnAuWXsI/s1600/%E8%A8%AD%E7%BD%AE%EF%BC%883%E3%83%9C%E3%82%BF%E3%83%B3%EF%BC%89.png" alt="設置アイコン3" class="icon-img">
+                        <p><strong class="font-bold">設置カード:</strong> 設置時にアイコンの数字と同じ数のカウンターをアイテム上に置き、設置されている間、効果が発動し続けます。<br>自身がポジションのボタンでゲームが終了するたびにカウンターを1つ取り除き、0個になった時点で破棄されます。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7t8gjDdW2tUszqmBuEStHnMRdXdPCQ2WNrCAhJURX3zyjmOqqrKSoQdxZFSaX6SRMISUQXbgixuh8t0GgA57-0lMDH41A9PloTPO8hlzbm_57qHJH3aTcsHRcutIidr8k1fcHonXpUgHo2QXhssuJB3YZeLcFkQyqWsk1R4tu1vvWuDYuLRFBG49UkiU/s1600/%E8%A8%AD%E7%BD%AE%EF%BC%88%E6%B0%B8%E7%B6%9A%EF%BC%89.png" alt="永続設置アイコン" class="icon-img">
+                        <p><strong class="font-bold">永続設置カード:</strong> 設置されている間、効果が発動し続けます。</p>
+                    </div>
+                </div>
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">2.4. 使用タイミング・使用フェーズ</h3>
+                <p class="mb-2">各アイテムには、使用できる<span class="font-bold text-red-700">タイミング</span>と<span class="font-bold text-red-700">フェーズ</span>が指定されています。<br>両方を満たす場合に、そのアイテムを使用できます。</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-stone-50 p-4 rounded">
+                        <h4 class="font-bold">タイミング</h4>
+                        <dl class="mt-2">
+                            <dt class="font-semibold">アクション時:</dt><dd class="text-sm pl-2">自身のアクションを行うタイミングで使用できます（ALL-IN後はアクション権がないため使用不可）</dd>
+                            <dt class="font-semibold mt-2">アクティブ時:</dt><dd class="text-sm pl-2">自身がそのゲームでハンドを所持している（フォールドしていない）状態であれば使用できます</dd>
+                            <dt class="font-semibold mt-2">常時:</dt><dd class="text-sm pl-2">いつでも使用できます</dd>
+                        </dl>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded">
+                        <h4 class="font-bold">フェーズ</h4>
+                        <ul class="text-sm list-disc list-inside mt-2">
+                            <li>プリフロップ</li>
+                            <li>フロップ</li>
+                            <li>ターン</li>
+                            <li>リバー</li>
+                            <li>ショウダウン (ベッティング終了後～チップ移動まで)</li>
+                            <li>ハンド間 (決着後～次ゲームのカード配布まで)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+	<section id="hand-ranking" class="content-section">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="orbitron text-2xl font-bold border-b-2 border-red-800 pb-2 mb-4">3. 役判定について</h2>
+                
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">3.1. 役の作り方（基本）</h3>
+                <p class="mb-4">通常のテキサスホールデム通り、プレイヤーは配られるハンド（手札）と、場に開かれるボード毎のコミュニティカードから5枚を選び、役を作ります。<br>より強い役（同じ場合より強いキッカー）を作り上げたプレイヤーが勝利になります。</p>
+                
+                <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md" role="alert">
+                    <p class="font-bold">【特殊なシーンにおける処理】</p>
+                    <p class="mt-1">アイテムの影響でまれに、ハンドとボードを合わせても5枚未満になる場合があります。<br>その場合、その中で作れる役にて判定し、不足分はキッカーの判定において2よりも弱いカードとして扱います。</p>
+                </div>
+                <h3 class="orbitron text-xl font-bold mt-12 border-b border-stone-300 pb-2 mb-4">3.2. 特殊な勝利条件</h3>
+                <p>アイテムの効果によって、勝利条件やボードが追加されることがあります。<br>その場合は、以下のルールに従ってポットを分配します。</p>
+                <div class="space-y-4 mt-4">
+                    <div class="bg-stone-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg">ボードが2つ以上に増えた場合</h3>
+                        <p class="mt-2">ボード毎に役の判定を行い、それぞれの勝利者を決定。ポットは各勝利者で等分して獲得します。<br><strong class="text-red-700">端数が出た際は、ボタンの左隣から時計回りに数えて、より近いプレイヤーが得ます。</strong></p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg">勝利条件が2つ以上に増えた場合</h3>
+                        <p class="mt-2">それぞれの勝利条件を満Tしたプレイヤーでポットを等分して獲得します。<strong class="text-red-700">端数が出た際は、NLH準拠のルールで勝利したプレイヤーが得ます。</strong></p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg">勝利条件とボードが両方2つ以上に増えた場合</h3>
+                        <p class="mt-2">各ボードとハンドの組み合わせを、追加されたルールごとに全てのボードで比較します。<br>最も強い役を作ったプレイヤーがそのルールの勝利者となり、ルールごとの勝利者でポットを分割します。<strong class="text-red-700">端数が出た際は、NLH準拠のルールで勝利したプレイヤーが得ます。</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="glossary" class="content-section">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="orbitron text-2xl font-bold border-b-2 border-red-800 pb-2 mb-4">4. 用語とキーワード効果</h2>
+                
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">4.1. 基本的な用語の区別</h3>
+                <p>このゲームでは、いくつかの用語を明確に区別します。混同しないように注意してください。</p>
+                <div class="overflow-x-auto mt-4">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-stone-800 text-white">
+                            <tr><th class="p-3">用語</th><th class="p-3">説明</th></tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">アイテム</td><td class="p-3">このゲームの主役である特殊能力カード</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">手札</td><td class="p-3">各プレイヤーが所持しているアイテムのこと</td></tr>
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">カード</td><td class="p-3">いわゆるトランプのこと</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">ハンド</td><td class="p-3">各プレイヤーに配られる2枚のカード（トランプ）のこと</td></tr>
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">1ゲーム</td><td class="p-3">カードが配られてから勝者が決まるまでの一連の流れ</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">4.2. キーワード効果</h3>
+                 <p>アイテムの効果テキストを分かりやすくするため、特定の効果には<span class="keyword font-bold">キーワード効果</span>として名前が付けられています。<br>効果テキスト中で<span class="keyword">下線</span>が付いているものが、キーワード効果に該当します。</p>
+                <div class="overflow-x-auto mt-4">
+                     <table class="w-full text-left border-collapse">
+                        <thead class="bg-stone-800 text-white">
+                            <tr><th class="p-3">キーワード効果</th><th class="p-3">説明</th></tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">設置</td><td class="p-3">プレイヤーの前にアイテムを表向きで置くこと<br><strong class="text-red-700">設置されたアイテムは、そのプレイヤーに帰属しますが、手札としては扱いません</strong></td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">封印</td><td class="p-3">アイテムの効果により、カードをそのアイテムの下に裏向きで置くこと<br>封印されたカードは、アイテムが場を離れるまで<strong class="text-red-700">使用者を含め誰も確認できません</strong></td></tr>
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">獲得</td><td class="p-3">ストックからチップを受け取ること</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">【ルール変更】</td><td class="p-3">このキーワードを持つアイテムは、<strong class="text-red-700">全プレイヤー合わせて1ゲーム中に1枚のみ</strong>使用できます</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">4.3. その他の用語</h3>
+                <div class="overflow-x-auto mt-4">
+                     <table class="w-full text-left border-collapse">
+                        <thead class="bg-stone-800 text-white">
+                            <tr><th class="p-3">用語</th><th class="p-3">説明</th></tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">ポット</td><td class="p-3">そのゲームで、それまでのラウンドと現在のラウンドで全プレイヤーが賭けたチップの総称</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">PL</td><td class="p-3">プレイヤーのこと</td></tr>
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">アクティブ</td><td class="p-3">そのゲームにおいて、フォールドせずにハンドを所持している状態</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">オールイン</td><td class="p-3">自身のスタックを全てポットに入れている状態<br><strong class="text-red-700">後からチップを獲得した場合でも、追加でチップをポットに入れることはできません</strong></td></tr>
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">キッカー</td><td class="p-3">5枚のハンドのうち、役の構成に含まれないカードのこと<br>役とその強さが同等の場合に、勝敗を決める役割を果たす</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">破棄</td><td class="p-3">アイテムを捨て札に送ること</td></tr>
+                             <tr class="border-b bg-stone-50"><td class="p-3 font-bold">捨て札</td><td class="p-3">使用済み、または破棄されたアイテムが置かれる共通の山</td></tr>
+                             <tr class="border-b"><td class="p-3 font-bold">マックパイル</td><td class="p-3">各プレイヤーが捨てたハンド（トランプ）が集められる場所</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">4.4. Jokerとポーカーの役</h3>
+                <p>アイテムの効果により、山札にJokerが追加されたり、特定のカードをJokerとして扱うことがあります。<br>Jokerは、<strong class="text-red-700">役を判定する時にのみオールマイティカードとして使用でき、使用者がスートと数字を任意に指定</strong>できます。</p>
+                <p class="mt-2 font-bold">本ゲームではJokerが登場する場合があるため、役の強さは以下の順となります。</p>
+                 <div class="overflow-x-auto mt-4">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-stone-800 text-white">
+                            <tr><th class="p-3">順位</th><th class="p-3">役の名前</th><th class="p-3">説明</th></tr>
+                        </thead>
+                        
+                        <tbody class="bg-white">
+                            <tr class="border-b"><td class="p-3 font-bold">1</td><td class="p-3">ファイブカード</td><td class="p-3">同数位のカードを5枚揃えた役</td></tr>
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">2</td><td class="p-3">ロイヤルフラッシュ</td><td class="p-3">5枚のカードが1種類のスートで揃っており、また最も数位が高い5枚（A・K・Q・J・T）が揃った役</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">3</td><td class="p-3">ストレートフラッシュ</td><td class="p-3">5枚のカードが1種類のスートで揃っており、また数位が連続（1ランク差で並んでいる）している役</td></tr>
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">4</td><td class="p-3">フォーカード</td><td class="p-3">同数位のカードを4枚揃えた役</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">5</td><td class="p-3">フルハウス</td><td class="p-3">同数位のカード3枚と、残り2枚もペアである役</td></tr>
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">6</td><td class="p-3">フラッシュ</td><td class="p-3">5枚のカードが1種類のスートだけで構成された役</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">7</td><td class="p-3">ストレート</td><td class="p-3">5枚のカードの数位が連続（1ランク差で並んでいる）している役</td></tr>
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">8</td><td class="p-3">スリーカード</td><td class="p-3">同数位のカード3枚を揃えた役</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">9</td><td class="p-3">ツーペア</td><td class="p-3">数位で揃えたペアが2組ある役</td></tr>
+                            <tr class="border-b bg-stone-50"><td class="p-3 font-bold">10</td><td class="p-3">ペア</td><td class="p-3">数位で揃えたペアが1組ある役</td></tr>
+                            <tr class="border-b"><td class="p-3 font-bold">11</td><td class="p-3">ハイカード</td><td class="p-3">何も揃っていない・役なし</td></tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </div>
+        </section> 
+        
+        <section id="rulings" class="content-section">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="orbitron text-2xl font-bold border-b-2 border-red-800 pb-2 mb-4">Q&A / 分かりにくいルールの裁定</h2>
+                
+                <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-800 p-4 rounded-md mb-8" role="alert">
+                    <p class="font-bold">ルールに関するご質問</p>
+                    <p class="mt-1">ここに記載のないルール裁定について不明な点がある場合は、以下のフォームよりご質問ください。</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdiS63kbpLoFfkE9o52YxKbOpyuAYE_Hra75vw5eM1-_dQuxw/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="mt-3 inline-block bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                        質問フォームを開く
+                    </a>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">ルール裁定</h3>
+                        <div class="space-y-4">
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. ゲーム進行中にトランプの山札が0枚になってしまいました。どうすればよいでしょう？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> 以下の手順で対応してください。<br>①マックプールにあるカードを全て回収し、シャッフルして山札を作り直して下さい。<br>②マックプールがない場合はバーンカードをシャッフルして使用してください。<br>③それでも不足する場合、配り切った時点でのハンド・ボードで役判定をします。（アイテム使用も不可）</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. "単独でメインポットを獲得"と表記のアイテムが使用されている最中に、勝利条件やボードが増えてしまいました。この場合の条件はどの様に判定されますか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> スクープ（全ての条件・ボードで勝利する）で勝った場合のみ、「単独でメインポットを獲得した」とみなします。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. 封印カードの表面をいずれのプレイヤーも確認できないということですが、枚数は確認できますか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> はい。封印されているカードの枚数とカードの裏面は公開情報です。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. ボードが2列以上になった場合のコミュニティカードの出し方を教えて下さい。</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> ボードが2つ以上になる場合、各ストリートのカードは以下の手順で配ります。<br>①最初にカードを1枚だけバーン（捨て札に）します。<br>②その後、各ボードに必要な枚数のカードをまとめて配ります。<br>　フロップ：1枚バーン → ボードAに3枚 → ボードBに3枚 → ・・・<br>　ターン・リバー：1枚バーン → ボードAに1枚 → ボードBに1枚 → ・・・</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. 対応カードはどのタイミングまで使用できますか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> アイテム効果の読み上げ後、次のアイテムが使用される、カードが配られる、ボードにカードが増える、アクションが2人以上完了する、10秒が経過する、のいずれかを満たすまで使用可能です。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. アイテムの使用とは、どのタイミングを指しますか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> アイテムを手札から公開し、効果を発揮または設置したタイミングです。設置済みのカード効果を行使する事はアイテムの使用とはみなしません。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. アイテムの設置とは、どのタイミングを指しますか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> アイテムを手札から公開し、設置したタイミングです。アイテム効果などで設置先が変更された場合にはカードの設置とはみなしません。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. アイテムの効果でスタックを超える支払いが必要になりました。この場合オールイン扱いになりますか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> アイテムの効果などで支払額が不足する場合、その時点で払える額でのオールイン扱いになります。またフォールド後の場合はその時点で敗退となります。</p></div></details>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">個別カードの処理（基本セット）</h3>
+                        <div class="space-y-4">
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. 「ごまかし」の発動中、♣5,♣6,♣7,◆8,♣Aでの役判定が可能な状態になりました。フラッシュ・ストレート両方を満Tしますが、この場合ストレートフラッシュとしてみなしますか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> みなしません。「通常より1枚少ない枚数で成立していると見なす」の通り、判定が4枚で行われます。5枚のカードでストレート・フラッシュを満たしていても、4枚のカードでは両方を満たしていないため、"4枚のカードでストレート・フラッシュの双方を満たした"場合に成立する役であるストレートフラッシュとしては扱いません。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. 「ごまかし」の発動中に、♣5,♣6,♣7,◆8,♣Aと◆5,◆6,◆7,♣8,♣Kが勝負になりました。この場合どちらの勝利となりますか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> 1枚少ない枚数つまり4枚で判定なので役判定において役構成に関係のない5枚目のカードがうまれ、キッカーでの勝負となります。そのため、キッカーAがある方の勝利となります。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. 「威嚇」を使用されている際に、対象とされているPLはオールインは可能でしょうか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> ベット・レイズによるオールインはできませんが、コールによるオールインは可能です。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. レベルが切り替わるタイミングで「ギャンブル」使用しました。この場合、BBは前のレベルか次のレベルのどちらの額を支払いますか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> 次のゲームで使用されるレベルのBB額を支払ってください。</p></div></details>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">個別カードの処理（拡張セット）</h3>
+                        <div class="space-y-4">
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. 「デッキ追加 黒」、「デッキ追加 金」が取り除かれる際に、該当のカードが封印されていました。この場合、どの様に処理しますか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> 封印されていても取り除かれる処理が優先されます。この結果、封印枚数が0枚のアイテムが設置状態で残る場合があります。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. 「スート大好き」の効果がよく分かりません。なぜ「♥A, ♦A」のペアより「♣3, ♠3」のペアの方が強いのですか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> このアイテムの効果中は、役を構成するカードの中に、より強いスート（♠ > ♥ >♦◆ > ♣）が含まれているかで勝敗を決めます。<br>「♣3, ♠3」のペアは最も強いスペード(♠)を含んでいるため、「♥A, ♦A」のペア（含まれる一番強いスートはハート♥）より強くなります。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. 「スート大好き」の発動中に、「♣A, ♦A」のワンペアと「♣3, ♦3」のワンペアで勝負になりました。スートが同じなので、数字の大きいAの勝ちでしょうか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> 「スート大好き」発動中は、数字の強弱は一切参照しません。キッカーに入るスートの強さを比較して下さい。そのスートも同様の場合はチョップ（引き分け）とします。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. 「負けるが勝ち」が発動中、Jokerはどのように扱いますか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> 「構成できる最も強い役」を判定するため、Jokerも含めて作ることが可能な最強の役を考えて下さい。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. 「起立！」の効果による全員への2BBの支払いに対し、スタックが不足する場合どうしたらよいでしょう？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> ディーラーはストックから不足分を補充して全員に支払ってください。また、インプレイかどうかを問わず、即座にプレイヤーは敗退となります。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. 怪我の発動中、チェックをしたくない場合にフォールドを選択することは可能でしょうか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> 可能です。また離席状態で通常チェックが可能な場合、強制的にフォールドとなります。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. 「買収」使用時に、自身のアクション状況、アクション順はどの様に処理しますか？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> 現在処理されている順番のままで処理し、自身はこのラウンドでアクションをまだ行っていないものとみなします。<br>この結果、レイズ権のないプレイヤーにアクション順が回ってくる場合があります。</p></div></details>
+                            <details class="bg-stone-50 p-4 rounded-lg"><summary class="font-semibold cursor-pointer">Q. メインポットが20BBで、5BBをベットしたプレイヤーに「買収」を使用しました。どの様に処理すればよいでしょう？</summary><div class="mt-4 pt-4 border-t border-stone-200 text-stone-700"><p><strong>A.</strong> 「買収」を使用した相手に、25BBまでの額を提示し、同意が得られた場合はその額を支払いハンドを受け取ります。<br>この際に、そのプレイヤーがベットしたチップも合わせて自身の前に移動します。</p></div></details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="card-list" class="content-section">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="orbitron text-2xl font-bold border-b-2 border-red-800 pb-2 mb-4">カード一覧</h2>
+                
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">基本セット（70枚）</h3>
+                <div class="overflow-x-auto mt-4">
+                <table class="w-full text-left border-collapse sortable-table">
+                    <thead class="bg-stone-800 text-white">
+                        <tr>
+                            <th class="p-3 sort-header w-5/12">カード名</th>
+                            <th class="p-3 sort-header w-3/12">種類</th>
+                            <th class="p-3 sort-header w-2/12">レベル</th>
+                            <th class="p-3 sort-header w-2/12">枚数</th>
+                            </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">ボムポット</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">D6フロップ</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">Run it Twice</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">スーパーホールデム</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">オマハホールデム</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">クローン</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">時を戻そう</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">追加オーダー</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">3枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">フリーロール</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">ブラックジャック</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">Dueces Wild</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">27ゲーム</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">ギャンブル</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">チョップ</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">威嚇</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">トリガーハッピー</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">透視</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">ワンモアチャンス</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">掘り出し物</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">ゲン担ぎ</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">合体</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">掃除機</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">罰金</td>
+                            <td class="p-3">対応カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">ダメ！</td>
+                            <td class="p-3">対応カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">4枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">ジャックポット！</td>
+                            <td class="p-3">永続設置カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">かわいいは正義</td>
+                            <td class="p-3">永続設置カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">うちポケット</td>
+                            <td class="p-3">設置カード③</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">インフレ</td>
+                            <td class="p-3">設置カード②</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">怪我</td>
+                            <td class="p-3">設置カード③</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">没収</td>
+                            <td class="p-3">設置カード②</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">眠れる獅子</td>
+                            <td class="p-3">設置カード②</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">取り締まり</td>
+                            <td class="p-3">設置カード②</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">アドレナリン</td>
+                            <td class="p-3">設置カード②</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">チェンジ</td>
+                            <td class="p-3">設置カード②</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">オーバードーズ</td>
+                            <td class="p-3">設置カード②</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">心機一転</td>
+                            <td class="p-3">設置カード①</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">ごまかし</td>
+                            <td class="p-3">設置カード①</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">ワープゲート</td>
+                            <td class="p-3">設置カード①</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">体調不良</td>
+                            <td class="p-3">設置カード①</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <h3 class="orbitron text-xl font-bold mt-12 border-b border-stone-300 pb-2 mb-4">拡張セット</h3>
+                <h4 class="font-bold mt-6 mb-2 text-lg">拡張①：RuleChange（20枚）</h4>
+                <div class="overflow-x-auto mt-4">
+                <table class="w-full text-left border-collapse sortable-table">
+                    <thead class="bg-stone-800 text-white">
+                        <tr>
+                            <th class="p-3 sort-header w-5/12">カード名</th>
+                            <th class="p-3 sort-header w-3/12">種類</th>
+                            <th class="p-3 sort-header w-2/12">レベル</th>
+                            <th class="p-3 sort-header w-2/12">枚数</th>
+                            </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">Lazy River</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">ダブルボード</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">延長戦</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">エイトオアベター</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">クレイジーパイナップル</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">ジョーカー</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">負けるが勝ち</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">じゃんけん</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">起立！</td>
+                            <td class="p-3">永続設置カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">スート大好き</td>
+                            <td class="p-3">設置カード②</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">デッキ追加(黒)</td>
+                            <td class="p-3">設置カード②</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">デッキ追加(金)</td>
+                            <td class="p-3">設置カード①</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">1枚</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <h4 class="font-bold mt-6 mb-2 text-lg">拡張②：OuterManner（20枚）</h4>
+                <div class="overflow-x-auto mt-4">
+                <table class="w-full text-left border-collapse sortable-table">
+                    <thead class="bg-stone-800 text-white">
+                        <tr>
+                            <th class="p-3 sort-header w-5/12">カード名</th>
+                            <th class="p-3 sort-header w-3/12">種類</th>
+                            <th class="p-3 sort-header w-2/12">レベル</th>
+                            <th class="p-3 sort-header w-2/12">枚数</th>
+                            </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">席替え</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">買収</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">相乗り</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">すり替え</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">I'm Button</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">先読み</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="1"><span class="text-green-500 font-bold">★</span><span class="text-stone-300">★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">ステーキング</td>
+                            <td class="p-3">即時カード</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">横取り</td>
+                            <td class="p-3">対応カード</td>
+                            <td class="p-3" data-sort-value="2"><span class="text-yellow-500 font-bold">★★</span><span class="text-stone-300">★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">借金</td>
+                            <td class="p-3">設置カード③</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                        <tr class="border-b bg-stone-50">
+                            <td class="p-3 font-bold">悪魔の袖</td>
+                            <td class="p-3">設置カード①</td>
+                            <td class="p-3" data-sort-value="3"><span class="text-red-500 font-bold">★★★</span></td>
+                            <td class="p-3">2枚</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center p-4 mt-8 text-stone-500 text-sm">
+        <p>© VRC_ELysion All rights reserved.</p>
+    </footer>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    
+    // ===== 1. タブ切り替え機能 =====
+    const navLinks = document.querySelectorAll('.nav-link');
+    const contentSections = document.querySelectorAll('.content-section');
+
+    function showSection(targetId) {
+        contentSections.forEach(section => {
+            section.classList.remove('active');
+        });
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            targetElement.classList.add('active');
+        }
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.dataset.target === targetId) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.dataset.target;
+            showSection(targetId);
+            window.history.pushState(null, '', `#${targetId}`);
+        });
+    });
+
+    const initialSection = window.location.hash.substring(1) || 'intro_overview';
+    showSection(initialSection);
+
+    // ===== 2. テーブルソート機能 =====
+    
+    /**
+     * ソート後にテーブルの行の背景色（シマシマ）を再適用する
+     * @param {HTMLTableElement} table - 対象のテーブル
+     */
+    function applyRowStripes(table) {
+        const tbody = table.querySelector('tbody');
+        tbody.querySelectorAll('tr').forEach((row, index) => {
+            row.classList.remove('bg-stone-50'); // 既存のクラスを一度削除
+            if (index % 2 === 1) { // 奇数インデックス（= 2番目、4番目の行）
+                row.classList.add('bg-stone-50');
+            }
+        });
+    }
+
+    /**
+     * ヘッダーに基づいてテーブルをソートする
+     * @param {HTMLTableElement} table - ソート対象のテーブル
+     * @param {number} columnIndex - ソート対象の列インデックス
+     * @param {string} forcedDirection - 'asc' または 'desc'。指定がなければ自動で切り替え
+     */
+    function sortTableByColumn(table, columnIndex, forcedDirection = null) {
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const header = table.querySelector(`th:nth-child(${columnIndex + 1})`);
+        
+        let direction = forcedDirection;
+        if (!direction) {
+            const currentDir = header.dataset.sortDir || 'desc';
+            direction = currentDir === 'desc' ? 'asc' : 'desc';
+        }
+
+        const sortedRows = rows.sort((a, b) => {
+            const cellA = a.querySelector(`td:nth-child(${columnIndex + 1})`);
+            const cellB = b.querySelector(`td:nth-child(${columnIndex + 1})`);
+
+            let valA = cellA.dataset.sortValue || cellA.textContent.trim();
+            let valB = cellB.dataset.sortValue || cellB.textContent.trim();
+
+            if (columnIndex === 3) { // "枚数"カラム
+                valA = parseInt(valA.replace('枚', ''), 10);
+                valB = parseInt(valB.replace('枚', ''), 10);
+            }
+            else if (columnIndex === 2) { // "レベル"カラム
+                valA = parseInt(valA, 10);
+                valB = parseInt(valB, 10);
+            }
+
+            if (valA < valB) {
+                return direction === 'asc' ? -1 : 1;
+            }
+            if (valA > valB) {
+                return direction === 'asc' ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // DOMに反映
+        tbody.innerHTML = '';
+        sortedRows.forEach(row => tbody.appendChild(row));
+
+        // ヘッダーのスタイル更新
+        table.querySelectorAll('th.sort-header').forEach(th => {
+            th.classList.remove('sort-asc', 'sort-desc');
+            th.dataset.sortDir = '';
+        });
+        header.classList.add(direction === 'asc' ? 'sort-asc' : 'sort-desc');
+        header.dataset.sortDir = direction;
+        applyRowStripes(table);
+    }
+
+    // すべてのソート可能テーブルにクリックイベントを設定
+    document.querySelectorAll('.sortable-table').forEach(table => {
+        table.querySelectorAll('th.sort-header').forEach((header, index) => {
+            header.addEventListener('click', () => {
+                sortTableByColumn(table, index);
+            });
+        });
+    });
+
+    // ===== 3. デフォルトソートの実行 =====
+    document.querySelectorAll('.sortable-table').forEach(table => {
+        // デフォルトでレベル昇順（'asc'）でソート
+        sortTableByColumn(table, 2, 'asc');
+    });
+
+});
+</script>
+</body>
+</html>
