@@ -122,10 +122,21 @@
                 </div>
             
                 <h2 class="orbitron text-2xl font-bold border-b-2 border-red-800 pb-2 mb-4 mt-12">1. ゲームの概要</h2>
+                
                 <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">1.1. 内容物</h3>
-                <ul class="list-disc list-inside bg-stone-50 p-4 rounded">
-                    <li>特殊能力カード（以下：アイテム）：70枚</li>
-                    <li>カウンター：20個</li>
+                <ul class="list-disc list-inside bg-stone-50 p-4 rounded space-y-2">
+                    <li>
+                        <span class="font-bold">特殊能力カード（以下：アイテム）：合計 110枚</span>
+                        <ul class="list-disc list-inside ml-6 mt-1 text-stone-600 text-sm">
+                            <li>基本セット：70枚</li>
+                            <li>拡張① リミックス・セッション：20枚</li>
+                            <li>拡張② ダーティー・トリック：20枚</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="font-bold">カウンター：20個</span>
+                        <p class="ml-6 text-sm text-stone-500">※様々な色が含まれていますが、色による機能の違いはありません。</p>
+                    </li>
                     <li>6面ダイス：2個</li>
                     <li>説明書カード</li>
                 </ul>
@@ -133,7 +144,43 @@
                     <p class="font-bold">【重要】</p>
                     <p>トランプ、チップは付属していません。各自でご用意をお願いします。<br>本ゲームでは、チップを追加で獲得することが多々ありますので、余剰チップをストックとして用意することを推奨します。</p>
                 </div>
-                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">1.2. アイテムの入手と手札上限</h3>
+
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">1.2. 特能ポーカーの遊び方（概要）</h3>
+                <p class="mb-4">基本はテキサスホールデムですが、手札の「アイテム」を使うことで、突如ハンドが増えたり、ルールそのものが激変したりします。<br>そんな<span class="font-bold">荒れ狂う環境</span>の中で、いかに状況に適応し、ポーカーとしての最善手を打ち続けられるかが勝負の鍵となります。</p>
+                
+                <div class="bg-stone-50 p-4 rounded-lg border border-stone-200">
+                    <h4 class="font-bold text-lg mb-2 text-red-800">▼ アイテム使用の流れ</h4>
+                    <ol class="list-decimal list-inside space-y-3">
+                        <li>
+                            <span class="font-bold">タイミングを見計らう</span>
+                            <p class="ml-6 text-sm mt-1 text-stone-700">
+                                各アイテムには使用条件（タイミング・フェーズ）が決まっています。<br>
+                                自身のアクション時はもちろん、カードによっては<span class="font-bold">他の人のアクション中</span>や、<span class="font-bold">アクティブでない（フォールド済みの）時</span>でさえ使用できるものもあります。
+                            </p>
+                        </li>
+                        <li>
+                            <span class="font-bold">宣言と読み上げ</span>
+                            <p class="ml-6 text-sm mt-1 text-stone-700">
+                                <span class="font-bold text-red-600">「（アイテム名）を使用します！」</span>と宣言し、効果を読み上げてください。<br>
+                                <span class="font-bold text-stone-600">※重要：この時点ではまだ効果の処理（カード配布やチップ移動）を行わないでください。</span>
+                            </p>
+                        </li>
+                        <li>
+                            <span class="font-bold">リアクションの確認（5秒ルール）</span>
+                            <p class="ml-6 text-sm mt-1 text-stone-700">
+                                読み上げ完了から<span class="font-bold">5秒（目安）</span>は、他のプレイヤーが「無効化」などの対応カードを使うための猶予タイムです。<br>
+                                すぐに処理を進めず、周囲の反応を見るなどお互いに配慮しましょう。
+                            </p>
+                        </li>
+                        <li>
+                            <span class="font-bold">効果の解決・ゲーム再開</span>
+                            <p class="ml-6 text-sm mt-1 text-stone-700">
+                                リアクションがなければ効果を解決し、その後ポーカーのアクションを再開します。
+                            </p>
+                        </li>
+                    </ol>
+                </div>
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">1.3. アイテムの入手と手札上限</h3>
                 <p class="font-semibold">▼ アイテムの入手</p>
                 <p class="mb-2">プレイヤーは以下のタイミングで、アイテムの山札からカードを1枚受け取ります。</p>
                 <ul class="list-disc list-inside ml-4 mb-4 bg-stone-50 p-4 rounded">
@@ -151,9 +198,9 @@
                     <p><strong>注意:</strong> アイテム配布フェーズ中にアイテムを使用することはできません。</p>
                 </div>
                 
-                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">1.3. プレイヤーの敗退</h3>
+                <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">1.4. プレイヤーの敗退</h3>
                 <p>プレイヤーのスタック（チップ）が0になり、ショーダウンが終了したタイミングで敗退となります。<br>敗退した場合、そのプレイヤーの手札と、そのプレイヤーに「設置」されていたアイテムの全てを捨て札にします。</p>
-                </div>
+            </div>
         </section>
 
         <section id="how-to-use" class="content-section">
