@@ -166,7 +166,7 @@
                             </p>
                         </li>
                         <li>
-                            <span class="font-bold">リアクションの確認（5秒ルール）</span>
+                            <span class="font-bold">リアクションの確認</span>
                             <p class="ml-6 text-sm mt-1 text-stone-700">
                                 読み上げ完了から<span class="font-bold">5秒（目安）</span>は、他のプレイヤーが「無効化」などの対応カードを使うための猶予タイムです。<br>
                                 すぐに処理を進めず、周囲の反応を見るなどお互いに配慮しましょう。
@@ -182,11 +182,11 @@
                 </div>
                 <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">1.3. アイテムの入手と手札上限</h3>
                 <p class="font-semibold">▼ アイテムの入手</p>
-                <p class="mb-2">プレイヤーは以下のタイミングで、アイテムの山札からカードを1枚受け取ります。</p>
+                <p class="mb-2">プレイヤーは以下のタイミングで、アイテムの山札からカード受け取ります。</p>
                 <ul class="list-disc list-inside ml-4 mb-4 bg-stone-50 p-4 rounded">
-                    <li>エントリー & リエントリー時</li>
-                    <li>アイテム配布フェーズ（下記を満たした直後のゲーム間で配布すること）
-                        <ul class="list-disc list-inside ml-4 mt-1">
+                    <li>エントリー & リエントリー時：<span class="font-bold text-red-700">2枚</span></li>
+                    <li>アイテム配布フェーズ（下記を満たした直後のゲーム間で配布）：1枚
+                        <ul class="list-disc list-inside ml-4 mt-1 text-sm">
                             <li><strong>トーナメントの場合:</strong> 各レベル開始時</li>
                             <li><strong>リングゲームの場合:</strong> 20分ごと</li>
                         </ul>
@@ -200,6 +200,7 @@
                 
                 <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">1.4. プレイヤーの敗退</h3>
                 <p>プレイヤーのスタック（チップ）が0になり、ショーダウンが終了したタイミングで敗退となります。<br>敗退した場合、そのプレイヤーの手札と、そのプレイヤーに「設置」されていたアイテムの全てを捨て札にします。</p>
+                <p class="mt-2 text-sm text-stone-600">※この際、「破棄されない」等の効果を持つアイテムであっても、その効果を無視して全て捨て札となります。</p>
             </div>
         </section>
 
@@ -209,7 +210,7 @@
                 <h3 class="orbitron text-xl font-bold mt-6 border-b border-stone-300 pb-2 mb-4">2.1. カードの見方</h3>
                  <div class="grid md:grid-cols-2 gap-8 items-center bg-stone-50 p-4 rounded-lg">
                     <div class="relative justify-self-center">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi5rVANklWzWAjtIqVVryJD0SlqBydO_bBkNgeFSszBMyq5cPJSzE5_UfSqFBvuLdu0I7reLFX1kuhyjvF7MRoD8Dd9ddoE5F8RFqb3_L9jHGesguN4FqFyjUppglrrpFQY9paY8rRmtRvHQOwDcB2KG3OdFMZGNcMqvyWXt0vfHuoflCEPi_P27FYudTo/s1039/%E7%89%B9%E6%AE%8A%E8%83%BD%E5%8A%9B%E3%83%9D%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%81%E3%82%AB%E3%83%BC%E3%83%89%E5%9F%BA%E7%A4%8E%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3.png" alt="サンプルカード" class="w-full h-auto rounded-lg shadow-md max-w-md mx-auto">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5CaVh-HyrGqPt5N2xiODlicPRHZOmBjfbLdXJ7ke0d2LQDK0mUaE1VyDcDZcGA96mXcEdX87kEK8P1p5FZkqsXKxslMNey-k-hrF9f1LkrazLxOOSx3m5HTZUytTlnHP8pq-hzHfhg97_0Fgb4DGI_BaeWeKFM0HDlcs30Vlk04FPTld3cNy6GNPiFrM/s1039/%E7%89%B9%E6%AE%8A%E8%83%BD%E5%8A%9B%E3%83%9D%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%81%E3%82%AB%E3%83%BC%E3%83%89%E5%9F%BA%E7%A4%8E%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3.png" alt="サンプルカード" class="w-full h-auto rounded-lg shadow-md max-w-xs mx-auto">
                     </div>
                     <div>
                         <ul class="space-y-3">
@@ -218,7 +219,7 @@
                             <li><span class="font-bold text-red-700">③カードレベル（右上）:</span> 1～3の数字で示され、カードの強さや影響力の目安となります</li>
                               <li><span class="font-bold text-red-700">④効果（中央）:</span> カード使用時に発動する効果です</li>
                               <li><span class="font-bold text-red-700">⑤使用タイミング・⑥フェーズ（下部）:</span> いつ、どの場面で使えるかを示します</li>
-                            <li><span class="font-bold text-red-700">⑦拡張マーク（右上）:</span> アイテムが含まれるセットを示します<br>（例：基本：無印、拡張①：チップ、拡張②：ドクロマーク）</li>
+                            <li><span class="font-bold text-red-700">拡張マーク（右上）:</span> アイテムが含まれるセットを示します<br>（例：基本：無印、拡張①：チップ、拡張②：ドクロマーク）</li>
                         </ul>
                     </div>
                 </div>
@@ -239,7 +240,7 @@
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0qpEyNEKH00oqfn9IqWiy8NbG6uBU997LbxLraYatrvcDJIV3s7s7O9qI5gj196N83tmZUReqidciAvWPl6Zx08n_0fLdm6LlXtNfnmVHbRmRDfUTTTIG1cFwcOxcTCznwr1Z5pKZSIHX4NP8deF3NpDCoWI1Yip5lfPHFN5Jz6o6HcCmRPlktEEQlEg/s1600/%E8%A8%AD%E7%BD%AE%EF%BC%881%E3%83%9C%E3%82%BF%E3%83%B3%EF%BC%89.png" alt="設置アイコン1" class="icon-img">
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8slFtVdsCQQNj9mjj9KUTVbHtXqsAnODOgbg02jWL6XL2iZ8WEJNcYhQ_mbb3KsMERJfq5-6JoCtT3WfBrykUk18H4DwNBP_6cOZ-SX4al_OJY5jYN5SMkk_UI4Kw_pc-5muUJOs4u5V5TK8rvuEGu-cStxggGsT0GPdYEpzbtLUkbF0nY8JoN95gC3w/s1600/%E8%A8%AD%E7%BD%AE%EF%BC%882%E3%83%9C%E3%82%BF%E3%83%B3%EF%BC%89.png" alt="設置アイコン2" class="icon-img">
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFN138L8FmNzpp0Fj-89ri_9FtKswbS0ZRgx32sSdyVp_v2-fx2Q4OhTMWQ5j6_E509nIw03xsTiZLKIKYqalcdsbCn5_ce1UbB3jGb1YgR0Gf4KEMWUDfrQH1IR2atb4t55KX5zl9oeMx_xiq4utMIjxgcqEUa8Eru4HDvlYuiizkaL4z_QpnnAuWXsI/s1600/%E8%A8%AD%E7%BD%AE%EF%BC%883%E3%83%9C%E3%82%BF%E3%83%B3%EF%BC%89.png" alt="設置アイコン3" class="icon-img">
-                        <p><strong class="font-bold">設置カード:</strong> 設置時にアイコンの数字と同じ数のカウンターをアイテム上に置き、設置されている間、効果が発動し続けます。<br>自身がポジションのボタンでゲームが終了するたびにカウンターを1つ取り除き、0個になった時点で破棄されます。</p>
+                        <p><strong class="font-bold">設置カード:</strong> 設置時にアイコンの数字と同じ数のカウンターをアイテム上に置き、設置されている間、効果が発動し続けます。<br>自身が<strong class="font-bold text-red-700">ボタン（ディーラーボタン）</strong>のポジションでゲームが終了するたびにカウンターを1つ取り除き、0個になった時点で破棄されます。</p>
                     </div>
                     <div class="flex items-start">
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7t8gjDdW2tUszqmBuEStHnMRdXdPCQ2WNrCAhJURX3zyjmOqqrKSoQdxZFSaX6SRMISUQXbgixuh8t0GgA57-0lMDH41A9PloTPO8hlzbm_57qHJH3aTcsHRcutIidr8k1fcHonXpUgHo2QXhssuJB3YZeLcFkQyqWsk1R4tu1vvWuDYuLRFBG49UkiU/s1600/%E8%A8%AD%E7%BD%AE%EF%BC%88%E6%B0%B8%E7%B6%9A%EF%BC%89.png" alt="永続設置アイコン" class="icon-img">
@@ -265,7 +266,7 @@
                             <li>ターン</li>
                             <li>リバー</li>
                             <li>ショウダウン (ベッティング終了後～チップ移動まで)</li>
-                            <li>ハンド間 (決着後～次ゲームのカード配布まで)</li>
+                            <li>ゲーム間 (決着後～次ゲームのカード配布完了まで)</li>
                         </ul>
                     </div>
                 </div>
